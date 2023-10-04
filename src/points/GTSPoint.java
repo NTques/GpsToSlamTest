@@ -29,4 +29,14 @@ public class GTSPoint { // points.GeoPoint to points.SlamPoint
     public SlamPoint getSlamPoint2() {
         return slamPoint2;
     }
+
+    @Override
+    public String toString() {
+        return "GTSPoint{" +
+                "ktmPoint1=" + ktmPoint1 +
+                ", slamPoint1=" + slamPoint1 +
+                ", ktmPoint2=" + ktmPoint2 +
+                ", slamPoint2=" + slamPoint2 +
+                '}';
+    }
 }

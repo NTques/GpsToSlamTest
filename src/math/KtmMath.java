@@ -1,6 +1,7 @@
 package math;
 
 import org.locationtech.proj4j.*;
+import points.GeoPoint;
 import points.KtmPoint;
 
 public class KtmMath {
@@ -19,5 +20,18 @@ public class KtmMath {
         double ktmY = result.y;
 
         return new KtmPoint(ktmX, ktmY);
+    }
+
+    public static GeoPoint ktmPointToGeoPoint(double x, double y) {
+        CoordinateTransformFactory ctFactory = new CoordinateTransformFactory();
+        CoordinateTransform wgsToKtm = ctFactory.createTransform(ktm, wgs84);
+
+        ProjCoordinate result = new ProjCoordinate();
+        wgsToKtm.transform(new ProjCoordinate(0, 0), result);
+
+        double lat = result.y;
+        double lon = result.x;
+
+        return new GeoPoint(lat, lon);
     }
 }
